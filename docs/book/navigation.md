@@ -94,10 +94,12 @@ return [
             [
                 'label' => 'Home',
                 'route' => 'home',
+                'class' => 'nav-link',
             ],
             [
                 'label' => 'Album',
                 'route' => 'album',
+                'class' => 'nav-link',
                 'pages' => [
                     [
                         'label'  => 'Add',
@@ -201,18 +203,19 @@ rather than album specific):
     // iterate through the pages
     foreach ($this->pages as $key => $page):
     ?>
-        <li>
-            <?php
-            // if this isn't the last page, add a link and the separator:
-            if ($key < count($this->pages) - 1):
-            ?>
-                <a href="<?= $page->getHref() ?>"><?= $page->getLabel() ?></a>
-            <?php
-            // otherwise, output the name only:
-            else:
-            ?>
-                <?= $page->getLabel() ?>
-            <?php endif; ?>
+        <?php
+        // if this isn't the last page, add a link and the separator:
+        if ($key < count($this->pages) - 1):
+        ?>
+            <li class="breadcrumb-item">
+            <a href="<?= $page->getHref() ?>"><?= $page->getLabel() ?></a>
+        <?php
+        // otherwise, output the name only:
+        else:
+        ?>
+            <li class="breadcrumb-item active" aria-current="page">
+            <?= $page->getLabel() ?>
+        <?php endif; ?>
         </li>
     <?php endforeach; ?>
 </ul>
